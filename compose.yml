@@ -1,0 +1,16 @@
+services:
+  aws-emulator:
+    build:
+      context: .
+      args:
+        EMU_ARCH: ${EMU_ARCH:-aarch64}
+    image: aws-emulator
+    ports:
+      - "127.0.0.1:${EMU_PORT:-9297}:${EMU_PORT:-9297}"
+    environment:
+      HOME: ${HOME}
+    volumes:
+      - ${HOME}/.aws/emulator:${HOME}/.aws/emulator
+    command: ["-p", "${EMU_PORT:-9297}"]
+    mem_limit: 2g
+    memswap_limit: 2g

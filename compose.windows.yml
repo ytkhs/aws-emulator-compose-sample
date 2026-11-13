@@ -1,0 +1,9 @@
+services:
+  aws-emulator:
+    build:
+      args:
+        EMU_ARCH: ${EMU_ARCH:-x86_64}
+    environment:
+      HOME: /home/emulator
+    volumes: !override
+      - ${USERPROFILE}/.aws/emulator:/home/emulator/.aws/emulator
